@@ -123,7 +123,8 @@ MainWindow::MainWindow(QApplication *parent) :
         } else
         {
             des = flow_str;
-            std::stringstream str_time(std::getline(fin, flow_str));
+            std::getline(fin, flow_str);
+            std::stringstream str_time(flow_str);
             std::getline(str_time, hour_s, ':');
             std::getline(str_time, min_s, '-');
             std::getline(str_time, hour_e, ':');
