@@ -94,11 +94,13 @@ MainWindow::MainWindow(QApplication *parent) :
     QVector <Day_Tasks> week;
 
     std::string flow_str;
+    std::string des;
+    int i = -1;
     int month;
     int day;
     int year;
-    int min;
-    int hour;
+    std::string min_s, min_e;
+    std::string hour_s, hour_e;
 
     std::ifstream fin_f("Week.txt");
     if (!fin_f.is_open())
@@ -110,18 +112,29 @@ MainWindow::MainWindow(QApplication *parent) :
     std::ifstream fin("Week.txt");
     while (std::getline(fin, flow_str))
     {
-        std::stringstream str(flow_str);
-        std::getline(str, flow_str, '.');
-        day = stoi(flow_str);
-        std::getline(str, flow_str, '.');
-        month = stoi(flow_str);
-        std::getline(str, flow_str);
-        year = stoi(flow_str);
-        Date dat(day, month, year);
-        
-        std::stringstream str(std::getline(fin, flow_str));
-        
-
+        std::stringstream str_date(flow_str);
+        std::getline(str_date, des, ' ');
+        if (des == "Date_Of_Tasks_x00F")
+        {
+            std::getline(str_date, flow_str, '.');
+            day = stoi(flow_str);
+            std::getline(str_date, flow_str, '.');
+            month = stoi(flow_str);
+            std::getline(str_date, flow_str);
+            year = stoi(flow_str);
+            ++i;
+            week.push_back(Day_Tasks());
+            week[i].day_Today(day, month, year);
+        } else
+        {
+            des = flow_str;
+            std::stringstream str_time(std::getline(fin, flow_str));
+            std::getline(str_time, hour_s, ':');
+            std::getline(str_time, min_s, '-');
+            std::getline(str_time, hour_e, ':');
+            std::getline(str_time, min_e);
+            week[i].tasks.push_back(Task(des, Time(hour_s, min_s), Time(hour_e, min_e)));
+        }
     }
     fin.close();
 }
