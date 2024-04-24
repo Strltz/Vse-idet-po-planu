@@ -1,6 +1,6 @@
 #include "task.h"
 
-Time::Time(int h, int m)
+Time::Time(std::string h, std::string m)
 {
     this->hours = h;
     this->minutes = m;
