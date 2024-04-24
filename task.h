@@ -25,6 +25,7 @@ private:
 public:
     Date() = default;
     Date(std::string, std::string, std::string);
+    void setDate(std::string, std::string, std::string);
     ~Date();
 };
 
