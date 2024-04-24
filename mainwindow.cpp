@@ -96,9 +96,7 @@ MainWindow::MainWindow(QApplication *parent) :
     std::string flow_str;
     std::string des;
     int i = -1;
-    int month;
-    int day;
-    int year;
+    std::string month, day, year;
     std::string min_s, min_e;
     std::string hour_s, hour_e;
 
@@ -116,12 +114,9 @@ MainWindow::MainWindow(QApplication *parent) :
         std::getline(str_date, des, ' ');
         if (des == "Date_Of_Tasks_x00F")
         {
-            std::getline(str_date, flow_str, '.');
-            day = stoi(flow_str);
-            std::getline(str_date, flow_str, '.');
-            month = stoi(flow_str);
-            std::getline(str_date, flow_str);
-            year = stoi(flow_str);
+            std::getline(str_date, day, '.');
+            std::getline(str_date, month, '.');
+            std::getline(str_date, year);
             ++i;
             week.push_back(Day_Tasks());
             week[i].day_Today(day, month, year);
