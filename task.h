@@ -8,12 +8,12 @@ class Time
 {
 public:
     Time() = default;
-    Time(int,int);
+    Time(std::string,std::string);
     ~Time();
 
 private:
-    int hours;
-    int minutes;
+    std::string hours;
+    std::string minutes;
 };
 
 class Date
