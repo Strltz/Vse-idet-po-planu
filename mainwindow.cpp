@@ -95,7 +95,7 @@ MainWindow::MainWindow(QApplication *parent) :
 
     std::string flow_str;
     std::string des;
-    int i = -1;
+    int j = -1;
     std::string month, day, year;
     std::string min_s, min_e;
     std::string hour_s, hour_e;
@@ -117,9 +117,9 @@ MainWindow::MainWindow(QApplication *parent) :
             std::getline(str_date, day, '.');
             std::getline(str_date, month, '.');
             std::getline(str_date, year);
-            ++i;
+            ++j;
             week.push_back(Day_Tasks());
-            week[i].day_Today(day, month, year);
+            week[j].day_Today.setDate(day, month, year);
         } else
         {
             des = flow_str;
@@ -128,7 +128,7 @@ MainWindow::MainWindow(QApplication *parent) :
             std::getline(str_time, min_s, '-');
             std::getline(str_time, hour_e, ':');
             std::getline(str_time, min_e);
-            week[i].tasks.push_back(Task(des, Time(hour_s, min_s), Time(hour_e, min_e)));
+            week[j].tasks.push_back(Task(des, Time(hour_s, min_s), Time(hour_e, min_e)));
         }
     }
     fin.close();
