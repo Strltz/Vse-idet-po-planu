@@ -16,7 +16,7 @@ Date::Date(std::string d, std::string m, std::string y)
     this->year = y;
 }
 
-Date::setDate(std::string d, std::string m, std::string y)
+void Date::setDate(std::string d, std::string m, std::string y)
 {
     this->day = d;
     this->month = m;
