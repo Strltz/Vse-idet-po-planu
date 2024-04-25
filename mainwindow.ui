@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1159</width>
-    <height>715</height>
+    <width>1291</width>
+    <height>708</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -310,7 +310,7 @@ background-color: rgb(255, 0, 0);
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -320,26 +320,215 @@ background-color: rgb(255, 0, 0);
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
      <item>
       <widget class="QLabel" name="task_1">
+       <property name="styleSheet">
+        <string notr="true">font: 75 24pt &quot;MS Shell Dlg 2&quot;;
+border: 2px solid grey;
+border-bottom: 0px;
+</string>
+       </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>Task_1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="time_1">
+       <property name="styleSheet">
+        <string notr="true">font: 18pt &quot;MS Shell Dlg 2&quot;;
+border:  2px solid grey;
+border-top: 0px;</string>
+       </property>
+       <property name="text">
+        <string>Time 1</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="task_2">
+       <property name="styleSheet">
+        <string notr="true">font: 75 24pt &quot;MS Shell Dlg 2&quot;;
+border: 2px solid grey;
+border-bottom: 0px;</string>
+       </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>Task_2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="time_2">
+       <property name="styleSheet">
+        <string notr="true">font: 18pt &quot;MS Shell Dlg 2&quot;;
+border: 2px solid grey;
+border-top: 0px;</string>
+       </property>
+       <property name="text">
+        <string>time_2</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="task_3">
+       <property name="styleSheet">
+        <string notr="true">font: 75 24pt &quot;MS Shell Dlg 2&quot;;
+border: 2px solid grey;
+border-bottom: 0px;</string>
+       </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>task_3</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="time_3">
+       <property name="styleSheet">
+        <string notr="true">font: 18pt &quot;MS Shell Dlg 2&quot;;
+border: 2px solid grey;
+border-top: 0px;</string>
+       </property>
+       <property name="text">
+        <string>time_3</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>783</x>
+      <y>0</y>
+      <width>31</width>
+      <height>681</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>40</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <kerning>false</kerning>
+     </font>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>60</y>
+      <width>480</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_6">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="curr_task">
+         <property name="styleSheet">
+          <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;;
+border: 2px solid grey;
+border-bottom: 0px;</string>
+         </property>
+         <property name="text">
+          <string>Текущая задача</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="time_curr_task">
+         <property name="styleSheet">
+          <string notr="true">font: 26pt &quot;MS Shell Dlg 2&quot;;
+border: 2px solid grey;
+border-top: 0px;</string>
+         </property>
+         <property name="text">
+          <string>Время</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QLabel" name="next_task">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 20pt &quot;MS Shell Dlg 2&quot;;
+border: 2px solid grey;
+border-bottom: 0px;
+</string>
+           </property>
+           <property name="text">
+            <string>След задача</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="time_next_task">
+           <property name="styleSheet">
+            <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;
+border: 2px solid grey;
+border-top: 0px;</string>
+           </property>
+           <property name="text">
+            <string>время</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="all_task">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Все задачи</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
@@ -349,7 +538,7 @@ background-color: rgb(255, 0, 0);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1159</width>
+     <width>1291</width>
      <height>26</height>
     </rect>
    </property>
