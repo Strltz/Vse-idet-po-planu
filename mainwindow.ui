@@ -509,25 +509,6 @@ border-top: 0px;</string>
          </item>
         </layout>
        </item>
-       <item>
-        <widget class="QPushButton" name="all_task">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>200</width>
-           <height>200</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Все задачи</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
     </layout>
