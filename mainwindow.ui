@@ -251,7 +251,7 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="button_week">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -277,7 +277,7 @@
           <string notr="true">font: 75 24pt &quot;MS Shell Dlg 2&quot;;</string>
          </property>
          <property name="text">
-          <string>Планы на сегодня</string>
+          <string>Планы на неделю</string>
          </property>
         </widget>
        </item>
