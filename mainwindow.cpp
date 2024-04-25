@@ -133,6 +133,107 @@ MainWindow::MainWindow(QApplication *parent) :
         }
     }
     fin.close();
+
+    qSort(week.begin(), week.end());
+    int q = 0;
+    for (q = 0; q < week.size(); ++q)
+    {
+        std::cout << week[q].day_Today << "\n";
+        for (int qq = 0; qq < week[q].tasks.size(); ++qq)
+        {
+            std::cout << week[q].tasks[qq] << "\n";
+        }
+    }
+
+    std::cout << "*******\n\n";
+
+    q = 0;
+//    while ( q < week.size())
+//    {
+//        if (QDate::currentDate().toString("dd.MM.yyyy").toStdString() > week[q].day_Today.toStr())
+//        {
+//            week.pop_front();
+//        }
+//        else
+//        {
+//            qSort(week[q].tasks.begin(), week[q].tasks.end());
+//            ++q;
+//        }
+//    }
+
+    for (q = 0; q < week.size(); ++q)
+    {
+        std::cout << week[q].day_Today << "\n";
+        for (int qq = 0; qq < week[q].tasks.size(); ++qq)
+        {
+            std::cout << week[q].tasks[qq] << "\n";
+        }
+    }
+
+    ui->task_1->setText("Нет задач");
+    ui->task_2->setText("Нет задач");
+    ui->task_3->setText("Нет задач");
+    ui->time_1->setText("-");
+    ui->time_2->setText("-");
+    ui->time_3->setText("-");
+
+    ui->all_task->setText("Все задачи");
+    ui->curr_task->setText("Нет задач");
+    ui->time_curr_task->setText("-");
+    ui->next_task->setText("Нет задач");
+    ui->time_next_task->setText("-");
+
+    if (week.size() > 0)
+    {
+        if (QDate::currentDate().toString("dd.MM.yyyy").toStdString() == week[0].day_Today.toStr())
+        {
+            switch (week[0].tasks.size())
+            {
+            case 0:
+                break;
+            case 1:
+                ui->curr_task->setText(QString::fromStdString(week[0].tasks[0].description));
+                ui->time_curr_task->setText(QString::fromStdString(week[0].tasks[0].start.toStr() + "-" + week[0].tasks[0].finish.toStr()));
+                break;
+            case 2:
+                ui->curr_task->setText(QString::fromStdString(week[0].tasks[0].description));
+                ui->time_curr_task->setText(QString::fromStdString(week[0].tasks[0].start.toStr() + "-" + week[0].tasks[0].finish.toStr()));
+                ui->next_task->setText(QString::fromStdString(week[0].tasks[1].description));
+                ui->time_next_task->setText(QString::fromStdString(week[0].tasks[1].start.toStr() + "-" + week[0].tasks[1].finish.toStr()));
+
+                ui->task_1->setText(QString::fromStdString(week[0].tasks[1].description));
+                ui->time_1->setText(QString::fromStdString(week[0].tasks[1].start.toStr() + "-" + week[0].tasks[1].finish.toStr()));
+                break;
+            case 3:
+                ui->curr_task->setText(QString::fromStdString(week[0].tasks[0].description));
+                ui->time_curr_task->setText(QString::fromStdString(week[0].tasks[0].start.toStr() + "-" + week[0].tasks[0].finish.toStr()));
+                ui->next_task->setText(QString::fromStdString(week[0].tasks[1].description));
+                ui->time_next_task->setText(QString::fromStdString(week[0].tasks[1].start.toStr() + "-" + week[0].tasks[1].finish.toStr()));
+
+                ui->task_1->setText(QString::fromStdString(week[0].tasks[1].description));
+                ui->time_1->setText(QString::fromStdString(week[0].tasks[1].start.toStr() + "-" + week[0].tasks[1].finish.toStr()));
+                ui->task_2->setText(QString::fromStdString(week[0].tasks[2].description));
+                ui->time_2->setText(QString::fromStdString(week[0].tasks[2].start.toStr() + "-" + week[0].tasks[2].finish.toStr()));
+                break;
+            default:
+                ui->curr_task->setText(QString::fromStdString(week[0].tasks[0].description));
+                ui->time_curr_task->setText(QString::fromStdString(week[0].tasks[0].start.toStr() + "-" + week[0].tasks[0].finish.toStr()));
+                ui->next_task->setText(QString::fromStdString(week[0].tasks[1].description));
+                ui->time_next_task->setText(QString::fromStdString(week[0].tasks[1].start.toStr() + "-" + week[0].tasks[1].finish.toStr()));
+
+                ui->task_1->setText(QString::fromStdString(week[0].tasks[1].description));
+                ui->time_1->setText(QString::fromStdString(week[0].tasks[1].start.toStr() + "-" + week[0].tasks[1].finish.toStr()));
+                ui->task_2->setText(QString::fromStdString(week[0].tasks[2].description));
+                ui->time_2->setText(QString::fromStdString(week[0].tasks[2].start.toStr() + "-" + week[0].tasks[2].finish.toStr()));
+                ui->task_3->setText(QString::fromStdString(week[0].tasks[3].description));
+                ui->time_3->setText(QString::fromStdString(week[0].tasks[3].start.toStr() + "-" + week[0].tasks[3].finish.toStr()));
+            }
+        }
+    }
+
+
+
+
 }
 
 MainWindow::~MainWindow() { delete ui; }
