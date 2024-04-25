@@ -1,10 +1,22 @@
 #include "mainwindow.h"
+#include "secondwindow.h"
 #include "ui_mainwindow.h"
 #include "task.h"
 
 MainWindow::MainWindow(QApplication *parent) :
     QMainWindow(),ui(new Ui::MainWindow) {
     ui->setupUi(this);
+
+    secWin = new SecondWindow();
+
+    connect(ui->button_pon, SIGNAL(clicked()), this, SLOT(open_sec()));
+    connect(ui->button_vtor, SIGNAL(clicked()), this, SLOT(open_sec()));
+    connect(ui->button_sreda, SIGNAL(clicked()), this, SLOT(open_sec()));
+    connect(ui->button_chetv, SIGNAL(clicked()), this, SLOT(open_sec()));
+    connect(ui->button_pyatn, SIGNAL(clicked()), this, SLOT(open_sec()));
+    connect(ui->button_subb, SIGNAL(clicked()), this, SLOT(open_sec()));
+    connect(ui->button_vsk, SIGNAL(clicked()), this, SLOT(open_sec()));
+    connect(ui->button_Day, SIGNAL(clicked()), this, SLOT(open_sec()));
 
     saveAction = new QAction(tr("&Сохранить"), this);
     connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
@@ -18,7 +30,13 @@ MainWindow::MainWindow(QApplication *parent) :
     fileMenu->addAction(exitAction);
 
     setWindowTitle(tr("Ежедневничек"));
+    first_get();
+}
 
+MainWindow::~MainWindow() { delete ui; }
+
+void MainWindow::first_get()
+{
     ui->Month->setText(QDate::currentDate().toString("MM.yyyy"));
     ui->button_Day->setText(QDate::currentDate().toString("dd"));
     int i = QDate::currentDate().dayOfWeek();
@@ -213,11 +231,14 @@ MainWindow::MainWindow(QApplication *parent) :
             }
         }
     }
+}
 
+void MainWindow::open_sec()
+{
+    QPushButton *button = (QPushButton*)sender();
+    secWin->setWindowTitle(tr((button->text()).toUtf8()));
 
+    secWin->show();
 
 
 }
-
-MainWindow::~MainWindow() { delete ui; }
-
