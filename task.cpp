@@ -11,6 +11,13 @@ std::string Time::toStr()
     return (this->hours + ":" + this->minutes);
 }
 
+QString Time::toQStr()
+{
+    QString str;
+    str = QString::fromStdString(this->hours + ":" + this->minutes);
+    return str;
+}
+
 Time::~Time() {}
 
 
