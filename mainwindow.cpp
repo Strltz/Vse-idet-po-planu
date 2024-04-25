@@ -136,37 +136,21 @@ MainWindow::MainWindow(QApplication *parent) :
 
     qSort(week.begin(), week.end());
     int q = 0;
-    for (q = 0; q < week.size(); ++q)
+
+    while ( q < week.size())
     {
-        std::cout << week[q].day_Today << "\n";
-        for (int qq = 0; qq < week[q].tasks.size(); ++qq)
+        if (QDate::currentDate().toString("dd.MM.yyyy").toStdString() > week[q].day_Today.toStr())
         {
-            std::cout << week[q].tasks[qq] << "\n";
+            week.pop_front();
         }
-    }
-
-    std::cout << "*******\n\n";
-
-    q = 0;
-//    while ( q < week.size())
-//    {
-//        if (QDate::currentDate().toString("dd.MM.yyyy").toStdString() > week[q].day_Today.toStr())
-//        {
-//            week.pop_front();
-//        }
-//        else
-//        {
-//            qSort(week[q].tasks.begin(), week[q].tasks.end());
-//            ++q;
-//        }
-//    }
-
-    for (q = 0; q < week.size(); ++q)
-    {
-        std::cout << week[q].day_Today << "\n";
-        for (int qq = 0; qq < week[q].tasks.size(); ++qq)
+        else
         {
-            std::cout << week[q].tasks[qq] << "\n";
+            qSort(week[q].tasks.begin(), week[q].tasks.end());
+            while (week[q].tasks[0].finish.toQStr() < QTime::currentTime().toString("hh:mm"))
+            {
+                week[q].tasks.pop_front();
+            }
+            ++q;
         }
     }
 
@@ -177,7 +161,6 @@ MainWindow::MainWindow(QApplication *parent) :
     ui->time_2->setText("-");
     ui->time_3->setText("-");
 
-    ui->all_task->setText("Все задачи");
     ui->curr_task->setText("Нет задач");
     ui->time_curr_task->setText("-");
     ui->next_task->setText("Нет задач");
