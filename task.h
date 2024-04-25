@@ -12,6 +12,7 @@ public:
     Time() = default;
     Time(std::string,std::string);
     std::string toStr();
+    QString toQStr();
     ~Time();
 
 
