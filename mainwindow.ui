@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1291</width>
-    <height>708</height>
+    <width>1337</width>
+    <height>713</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>780</width>
+      <width>801</width>
       <height>231</height>
      </rect>
     </property>
@@ -224,23 +224,27 @@
            <property name="text">
             <string>month</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="button_Day">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <widget class="QLabel" name="Day">
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
            </property>
-           <property name="font">
-            <font>
-             <pointsize>16</pointsize>
-            </font>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 75 16pt &quot;MS Shell Dlg 2&quot;;</string>
            </property>
            <property name="text">
             <string>Day</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
@@ -410,7 +414,7 @@ border-top: 0px;</string>
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>783</x>
+      <x>810</x>
       <y>0</y>
       <width>31</width>
       <height>681</height>
@@ -431,9 +435,9 @@ border-top: 0px;</string>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>60</y>
-      <width>480</width>
+      <x>830</x>
+      <y>50</y>
+      <width>484</width>
       <height>551</height>
      </rect>
     </property>
@@ -519,7 +523,7 @@ border-top: 0px;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1291</width>
+     <width>1337</width>
      <height>26</height>
     </rect>
    </property>
@@ -532,7 +536,6 @@ border-top: 0px;</string>
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
