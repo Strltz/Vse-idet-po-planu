@@ -16,18 +16,6 @@ MainWindow::MainWindow(QApplication *parent) :
     connect(ui->button_pyatn, SIGNAL(clicked()), this, SLOT(open_sec()));
     connect(ui->button_subb, SIGNAL(clicked()), this, SLOT(open_sec()));
     connect(ui->button_vsk, SIGNAL(clicked()), this, SLOT(open_sec()));
-    connect(ui->button_Day, SIGNAL(clicked()), this, SLOT(open_sec()));
-
-    saveAction = new QAction(tr("&Сохранить"), this);
-    connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
-
-    exitAction = new QAction(tr("&Выход"), this);
-    connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
-
-    fileMenu = this->menuBar()->addMenu(tr("&Файл"));
-    fileMenu->addAction(saveAction);
-    fileMenu->addSeparator();
-    fileMenu->addAction(exitAction);
 
     setWindowTitle(tr("Ежедневничек"));
     first_get();
@@ -38,7 +26,7 @@ MainWindow::~MainWindow() { delete ui; }
 void MainWindow::first_get()
 {
     ui->Month->setText(QDate::currentDate().toString("MM.yyyy"));
-    ui->button_Day->setText(QDate::currentDate().toString("dd"));
+    ui->Day->setText(QDate::currentDate().toString("dd"));
     int i = QDate::currentDate().dayOfWeek();
     switch (i)
     {
@@ -155,9 +143,11 @@ void MainWindow::first_get()
     qSort(week.begin(), week.end());
     int q = 0;
 
-    while ( q < week.size())
+    while (q < week.size())
     {
-        if (QDate::currentDate().toString("dd.MM.yyyy").toStdString() > week[q].day_Today.toStr())
+        if ((QDate::currentDate().toString("dd").toStdString() > week[q].day_Today.day)
+                and (QDate::currentDate().toString("MM").toStdString() > week[q].day_Today.month)
+                and (QDate::currentDate().toString("yyyy").toStdString() > week[q].day_Today.year))
         {
             week.pop_front();
         }
@@ -166,10 +156,11 @@ void MainWindow::first_get()
             qSort(week[q].tasks.begin(), week[q].tasks.end());
             while (week[q].tasks[0].finish.toQStr() < QTime::currentTime().toString("hh:mm"))
             {
-                week[q].tasks.pop_front();
+                  week[q].tasks.pop_front();
             }
             ++q;
         }
+
     }
 
     ui->task_1->setText("Нет задач");
@@ -231,7 +222,20 @@ void MainWindow::first_get()
             }
         }
     }
+
+
+    std::ofstream fout("Week.txt");
+    for (int i = 0; i < week.size(); ++i)
+    {
+        fout << "Date_Of_Tasks_x00F" << " " << week[i].day_Today.toStr() << "\n";
+        for (int j = 0; j < week[i].tasks.size(); ++j)
+        {
+            fout << week[i].tasks[j];
+        }
+    }
+    fout.close();
 }
+
 
 void MainWindow::open_sec()
 {
@@ -239,6 +243,4 @@ void MainWindow::open_sec()
     secWin->setWindowTitle(tr((button->text()).toUtf8()));
 
     secWin->show();
-
-
 }
