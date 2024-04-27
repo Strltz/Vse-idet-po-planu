@@ -1,3 +1,4 @@
+
 #ifndef TASK_H
 #define TASK_H
 
@@ -31,6 +32,7 @@ public:
     Date(std::string, std::string, std::string);
     void setDate(std::string, std::string, std::string);
     std::string toStr();
+    QString toQStr();
     ~Date();
     friend std::ostream& operator<<(std::ostream&, Date&);
 };
@@ -41,7 +43,7 @@ public:
     std::string description;
     Time start;
     Time finish;
-
+    QString toQStr();
     Task() = default;
     Task(std::string, Time, Time);
     ~Task();
