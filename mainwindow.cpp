@@ -2,12 +2,18 @@
 #include "secondwindow.h"
 #include "ui_mainwindow.h"
 #include "task.h"
+#include "entertask.h"
+#include "alltasks.h"
 
 MainWindow::MainWindow(QApplication *parent) :
     QMainWindow(),ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
+    setWindowTitle(tr("Ежедневничек"));
+
     secWin = new SecondWindow();
+
+    week = first_get();
 
     connect(ui->button_pon, SIGNAL(clicked()), this, SLOT(open_sec()));
     connect(ui->button_vtor, SIGNAL(clicked()), this, SLOT(open_sec()));
@@ -16,14 +22,26 @@ MainWindow::MainWindow(QApplication *parent) :
     connect(ui->button_pyatn, SIGNAL(clicked()), this, SLOT(open_sec()));
     connect(ui->button_subb, SIGNAL(clicked()), this, SLOT(open_sec()));
     connect(ui->button_vsk, SIGNAL(clicked()), this, SLOT(open_sec()));
+    connect(ui->button_week, SIGNAL(clicked()), this, SLOT(open_all()));
 
-    setWindowTitle(tr("Ежедневничек"));
-    first_get();
+
+
+    std::ofstream fout("Week.txt");
+    for (int i = 0; i < week.size(); ++i)
+    {
+        fout << "Date_Of_Tasks_x00F" << " " << week[i].day_Today.toStr() << "\n";
+        for (int j = 0; j < week[i].tasks.size(); ++j)
+        {
+            fout << week[i].tasks[j];
+        }
+    }
+    fout.close();
+
 }
 
 MainWindow::~MainWindow() { delete ui; }
 
-void MainWindow::first_get()
+QVector <Day_Tasks> MainWindow::first_get()
 {
     ui->Month->setText(QDate::currentDate().toString("MM.yyyy"));
     ui->Day->setText(QDate::currentDate().toString("dd"));
@@ -146,21 +164,23 @@ void MainWindow::first_get()
     while (q < week.size())
     {
         if ((QDate::currentDate().toString("dd").toStdString() > week[q].day_Today.day)
-                and (QDate::currentDate().toString("MM").toStdString() > week[q].day_Today.month)
-                and (QDate::currentDate().toString("yyyy").toStdString() > week[q].day_Today.year))
+                and (QDate::currentDate().toString("MM").toStdString() >= week[q].day_Today.month)
+                and (QDate::currentDate().toString("yyyy").toStdString() >= week[q].day_Today.year))
         {
             week.pop_front();
         }
         else
         {
             qSort(week[q].tasks.begin(), week[q].tasks.end());
-            while (week[q].tasks[0].finish.toQStr() < QTime::currentTime().toString("hh:mm"))
+            if (QDate::currentDate().toString("dd.MM.yyyy").toStdString() == week[q].day_Today.toStr())
             {
-                  week[q].tasks.pop_front();
+                while (week[q].tasks[0].finish.toQStr() < QTime::currentTime().toString("hh:mm"))
+                {
+                      week[q].tasks.pop_front();
+                }
             }
             ++q;
         }
-
     }
 
     ui->task_1->setText("Нет задач");
@@ -223,17 +243,7 @@ void MainWindow::first_get()
         }
     }
 
-
-    std::ofstream fout("Week.txt");
-    for (int i = 0; i < week.size(); ++i)
-    {
-        fout << "Date_Of_Tasks_x00F" << " " << week[i].day_Today.toStr() << "\n";
-        for (int j = 0; j < week[i].tasks.size(); ++j)
-        {
-            fout << week[i].tasks[j];
-        }
-    }
-    fout.close();
+    return week;
 }
 
 
@@ -241,6 +251,16 @@ void MainWindow::open_sec()
 {
     QPushButton *button = (QPushButton*)sender();
     secWin->setWindowTitle(tr((button->text()).toUtf8()));
+    secWin->setVector(week);
 
     secWin->show();
+}
+
+void MainWindow::open_all()
+{
+    AllTasks *allWin = new AllTasks;
+    allWin->setVector(week);
+    allWin->setWindowTitle(tr("Все задачечки"));
+
+    allWin->show();
 }
