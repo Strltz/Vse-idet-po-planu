@@ -59,7 +59,14 @@ bool operator<(Day_Tasks obj1, Day_Tasks obj2)
 
 std::string Date::toStr()
 {
-    return this->day + "." + this->month + "." + this->year;
+    return (this->day + "." + this->month + "." + this->year);
+}
+
+QString Date::toQStr()
+{
+    QString str;
+    str = QString::fromStdString(this->day + "." + this->month + "." + this->year);
+    return str;
 }
 
 Date::~Date() {}
@@ -70,6 +77,13 @@ Task::Task(std::string descr, Time start, Time end)
     this->description = descr;
     this->start = start;
     this->finish = end;
+}
+
+QString Task::toQStr()
+{
+    QString str;
+    str = QString::fromStdString(this->description + "\n" + this->start.toStr() + "-" + this->finish.toStr());
+    return str;
 }
 
 bool operator<(Task obj1, Task obj2)
