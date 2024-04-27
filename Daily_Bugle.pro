@@ -27,13 +27,21 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     task.cpp \
-    secondwindow.cpp
+    secondwindow.cpp \
+    qdynamicbutton.cpp \
+    entertask.cpp \
+    alltasks.cpp
 
 HEADERS += \
         mainwindow.h \
     task.h \
-    secondwindow.h
+    secondwindow.h \
+    qdynamicbutton.h \
+    entertask.h \
+    alltasks.h
 
 FORMS += \
         mainwindow.ui \
-    secondwindow.ui
+    secondwindow.ui \
+    entertask.ui \
+    alltasks.ui
