@@ -21,10 +21,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void first_get();
+    QVector <Day_Tasks> first_get();
     void open_sec();
+    void open_all();
 
 private:
+    QVector <Day_Tasks> week;
     Ui::MainWindow *ui;
     SecondWindow *secWin;
     QAction *saveAction;
